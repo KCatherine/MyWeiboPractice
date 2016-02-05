@@ -15,7 +15,7 @@
 #import "YJStatusFrame.h"
 #import "YJStatusCell.h"
 
-#import "AFNetworking.h"
+#import "YJHttpTool.h"
 #import "UIImageView+WebCache.h"
 #import "MJExtension.h"
 #import "MJRefresh.h"
@@ -72,14 +72,13 @@
 }
 #pragma mark - 获得用户数据
 - (void)getUserInfo {
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
     YJAccountModel *account = [YJAccountTool loadAccount];
     NSMutableDictionary *paras = [NSMutableDictionary dictionary];
     paras[@"access_token"] = account.access_token;
     paras[@"uid"] = account.uid;
     
-    [mgr GET:@"https://api.weibo.com/2/users/show.json" parameters:paras progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [YJHttpTool GET:@"https://api.weibo.com/2/users/show.json" parameters:paras success:^(id responseObject) {
         
         YJUserModel *user = [YJUserModel mj_objectWithKeyValues:responseObject];
         UIButton *titleBtn = (UIButton *)self.navigationItem.titleView;
@@ -88,8 +87,8 @@
         account.username = user.name;
         [YJAccountTool saveAccount:account];
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", error);
+    } failure:^(NSError *error) {
+        NSLog(@"get user info error : %@", error);
     }];
 }
 #pragma mark - 设置下拉刷新
@@ -136,8 +135,6 @@
     YJStatusFrame *firstStatusFrame = [self.statusFrames firstObject];
     YJStatusModel *firstStatus = firstStatusFrame.statusModel;
     
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    
     YJAccountModel *account = [YJAccountTool loadAccount];
     NSMutableDictionary *paras = [NSMutableDictionary dictionary];
     paras[@"access_token"] = account.access_token;
@@ -145,7 +142,8 @@
         paras[@"since_id"] = firstStatus.idstr;
     }
     
-    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:paras progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [YJHttpTool GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:paras success:^(id responseObject) {
+        
         NSLog(@"%@", responseObject);
         NSArray *newest = [YJStatusModel mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         NSMutableArray *newFrames = [self statusFramesWithStatuses:newest];
@@ -157,8 +155,9 @@
         [self.tableView reloadData];
         [control endRefreshing];
         [self showNewestStatusCount:newest.count];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", error);
+        
+    } failure:^(NSError *error) {
+        NSLog(@"refresh status error : %@", error);
         [control endRefreshing];
     }];
 }
@@ -203,14 +202,12 @@
         YJStatusFrame *lastStatusFrame = [self.statusFrames lastObject];
         YJStatusModel *lastStatus = lastStatusFrame.statusModel;
         
-        AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-        
         YJAccountModel *account = [YJAccountTool loadAccount];
         NSMutableDictionary *paras = [NSMutableDictionary dictionary];
         paras[@"access_token"] = account.access_token;
         paras[@"max_id"] = lastStatus.idstr;
         
-        [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:paras progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [YJHttpTool GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:paras success:^(id responseObject) {
             
             NSArray *more = [YJStatusModel mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
             NSMutableArray *newFrames = [self statusFramesWithStatuses:more];
@@ -220,30 +217,31 @@
             
             [self.tableView reloadData];
             [self.tableView.mj_footer endRefreshing];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"%@", error);
+            
+        } failure:^(NSError *error) {
+            NSLog(@"load more error : %@", error);
         }];
     }];
 }
 #pragma mark - 获得未读消息数
 - (void)setUpUnreadCount {
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
     YJAccountModel *account = [YJAccountTool loadAccount];
     NSMutableDictionary *paras = [NSMutableDictionary dictionary];
     paras[@"access_token"] = account.access_token;
     paras[@"uid"] = account.uid;
     
-    [mgr GET:@"https://rm.api.weibo.com/2/remind/unread_count.json" parameters:paras progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [YJHttpTool GET:@"https://rm.api.weibo.com/2/remind/unread_count.json" parameters:paras success:^(id responseObject) {
+        
         NSInteger unreadCount = [responseObject[@"status"] integerValue];
         if (unreadCount) {
             self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", unreadCount];
             [UIApplication sharedApplication].applicationIconBadgeNumber = unreadCount;
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", error);
+        
+    } failure:^(NSError *error) {
+        NSLog(@"set up unread count error : %@", error);
     }];
-
 }
 #pragma mark - 将微博模型转换成带有frame的微博模型
 - (NSMutableArray *)statusFramesWithStatuses:(NSArray *)statuses {
@@ -301,9 +299,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    test1 *vc = [[test1 alloc] init];
-//    vc.title = @"测试1控制器";
-//    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
