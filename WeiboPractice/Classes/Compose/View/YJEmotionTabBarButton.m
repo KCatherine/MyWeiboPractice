@@ -21,5 +21,8 @@
 /**
  *  重写setHighlighted方法忽略高亮状态
  */
+- (void)setHighlighted:(BOOL)highlighted {
+    
+}
 
 @end
