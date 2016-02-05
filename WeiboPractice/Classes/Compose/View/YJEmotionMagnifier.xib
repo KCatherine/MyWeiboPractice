@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="UBo-LQ-8H4" customClass="YJEmotionMagnifier">
+            <rect key="frame" x="0.0" y="0.0" width="64" height="91"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emoticon_keyboard_magnifier" translatesAutoresizingMaskIntoConstraints="NO" id="vBx-93-viZ">
+                    <rect key="frame" x="0.0" y="0.0" width="64" height="91"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRo-UL-N9T" customClass="YJEmotionButton">
+                    <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="xAS-Bm-HaR"/>
+                    </constraints>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="gRo-UL-N9T" firstAttribute="trailing" secondItem="vBx-93-viZ" secondAttribute="trailing" id="4my-Ft-QdO"/>
+                <constraint firstItem="gRo-UL-N9T" firstAttribute="top" secondItem="vBx-93-viZ" secondAttribute="top" id="8iG-7M-Kir"/>
+                <constraint firstItem="gRo-UL-N9T" firstAttribute="leading" secondItem="vBx-93-viZ" secondAttribute="leading" id="erf-r1-4xP"/>
+                <constraint firstAttribute="bottom" secondItem="gRo-UL-N9T" secondAttribute="bottom" constant="27" id="fDJ-cH-lrf"/>
+                <constraint firstAttribute="bottom" secondItem="gRo-UL-N9T" secondAttribute="bottom" constant="27" id="g3d-h8-txR"/>
+                <constraint firstAttribute="bottom" secondItem="gRo-UL-N9T" secondAttribute="bottom" constant="27" id="ijn-i5-zn1"/>
+                <constraint firstItem="vBx-93-viZ" firstAttribute="top" secondItem="UBo-LQ-8H4" secondAttribute="top" id="kAX-pw-JoM"/>
+                <constraint firstAttribute="bottom" secondItem="gRo-UL-N9T" secondAttribute="bottom" constant="27" id="vF8-Rd-lgh"/>
+                <constraint firstItem="gRo-UL-N9T" firstAttribute="leading" secondItem="UBo-LQ-8H4" secondAttribute="leading" id="yrM-6c-4xh"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="fDJ-cH-lrf"/>
+                    <exclude reference="g3d-h8-txR"/>
+                    <exclude reference="ijn-i5-zn1"/>
+                    <exclude reference="vF8-Rd-lgh"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="showedEmotionBtn" destination="gRo-UL-N9T" id="Mso-7B-bce"/>
+            </connections>
+            <point key="canvasLocation" x="1029" y="-91.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="emoticon_keyboard_magnifier" width="64" height="91"/>
+    </resources>
+</document>
