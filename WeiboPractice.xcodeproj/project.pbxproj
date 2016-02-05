@@ -93,6 +93,7 @@
 		396329701C622EA500E316F0 /* YJEmotionTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963296F1C622EA500E316F0 /* YJEmotionTabBar.m */; };
 		396329731C622EEE00E316F0 /* YJEmotionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 396329721C622EEE00E316F0 /* YJEmotionListView.m */; };
 		396329761C62FA3500E316F0 /* YJEmotionTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 396329751C62FA3500E316F0 /* YJEmotionTabBarButton.m */; };
+		3970747A1C64EC2300E9BD86 /* YJHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 397074791C64EC2300E9BD86 /* YJHttpTool.m */; };
 		39789F091C633E60001F7BDF /* YJEmotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 39789F081C633E60001F7BDF /* YJEmotion.m */; };
 		39789F0C1C6369D0001F7BDF /* YJEmotionPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39789F0B1C6369D0001F7BDF /* YJEmotionPageView.m */; };
 		39789F101C637E2C001F7BDF /* defaultInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39789F0D1C637E2C001F7BDF /* defaultInfo.plist */; };
@@ -291,6 +292,8 @@
 		396329721C622EEE00E316F0 /* YJEmotionListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJEmotionListView.m; sourceTree = "<group>"; };
 		396329741C62FA3500E316F0 /* YJEmotionTabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJEmotionTabBarButton.h; sourceTree = "<group>"; };
 		396329751C62FA3500E316F0 /* YJEmotionTabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJEmotionTabBarButton.m; sourceTree = "<group>"; };
+		397074781C64EC2300E9BD86 /* YJHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJHttpTool.h; sourceTree = "<group>"; };
+		397074791C64EC2300E9BD86 /* YJHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJHttpTool.m; sourceTree = "<group>"; };
 		39789F071C633E60001F7BDF /* YJEmotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJEmotion.h; sourceTree = "<group>"; };
 		39789F081C633E60001F7BDF /* YJEmotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJEmotion.m; sourceTree = "<group>"; };
 		39789F0A1C6369D0001F7BDF /* YJEmotionPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJEmotionPageView.h; sourceTree = "<group>"; };
@@ -411,6 +414,7 @@
 		3961E4731C59F06900C503F1 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				397074771C64EC0B00E9BD86 /* Tool */,
 				3961E4791C59F06900C503F1 /* Model */,
 				3961E47A1C59F06900C503F1 /* View */,
 				3961E4741C59F06900C503F1 /* Controller */,
@@ -854,6 +858,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		397074771C64EC0B00E9BD86 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				397074781C64EC2300E9BD86 /* YJHttpTool.h */,
+				397074791C64EC2300E9BD86 /* YJHttpTool.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		39789F061C633E3F001F7BDF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1088,6 +1101,7 @@
 				396328BE1C5CBA2C00E316F0 /* SDWebImageDownloaderOperation.m in Sources */,
 				396328CA1C5CBC3C00E316F0 /* YJUserModel.m in Sources */,
 				396328EC1C5CC01000E316F0 /* NSObject+MJProperty.m in Sources */,
+				3970747A1C64EC2300E9BD86 /* YJHttpTool.m in Sources */,
 				396328BC1C5CBA2C00E316F0 /* SDWebImageDecoder.m in Sources */,
 				396328BF1C5CBA2C00E316F0 /* SDWebImageManager.m in Sources */,
 				3963291D1C5CE1AA00E316F0 /* MJRefreshComponent.m in Sources */,
@@ -1244,6 +1258,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREFIX_HEADER = /Users/YJ/Developer/WeiboPractice/WeiboPractice/PrefixHeader.pch;
 				INFOPLIST_FILE = WeiboPractice/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "yang-jing.WeiboPractice";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1256,6 +1271,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREFIX_HEADER = /Users/YJ/Developer/WeiboPractice/WeiboPractice/PrefixHeader.pch;
 				INFOPLIST_FILE = WeiboPractice/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "yang-jing.WeiboPractice";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -11,7 +11,7 @@
 #import "YJAccountModel.h"
 #import "YJAccountTool.h"
 
-#import "AFNetworking.h"
+#import "YJHttpTool.h"
 #import "MBProgressHUD+MJ.h"
 
 @interface YJOAuthController ()<UIWebViewDelegate>
@@ -62,8 +62,6 @@
 }
 
 - (void)accessTokenWithCode:(NSString *)code {
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    
 //    client_id 申请应用时分配的AppKey。（新注册时可调整）
 //    client_secret 申请应用时分配的AppSecret。（新注册时可调整）
 //    grant_type 请求的类型，填写authorization_code
@@ -76,7 +74,8 @@
     paras[@"code"] = code;
     paras[@"redirect_uri"] = YJRedirectURL;
     
-    [mgr POST:@"https://api.weibo.com/oauth2/access_token" parameters:paras progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    //使用包装AFN的工具类发送HTTP请求
+    [YJHttpTool POST:@"https://api.weibo.com/oauth2/access_token" parameters:paras success:^(id _Nullable responseObject) {
         [MBProgressHUD hideHUD];
 //        access_token 用于调用access_token，接口获取授权后的access token。
 //        expires_in access_token的生命周期，单位是秒数。
@@ -88,7 +87,7 @@
         UIWindow *window = [UIApplication sharedApplication].keyWindow;
         [window switchRootViewController];
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSError * _Nonnull error) {
         [MBProgressHUD hideHUD];
         NSLog(@"%@", error);
     }];
