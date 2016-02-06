@@ -94,6 +94,8 @@
 		396329731C622EEE00E316F0 /* YJEmotionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 396329721C622EEE00E316F0 /* YJEmotionListView.m */; };
 		396329761C62FA3500E316F0 /* YJEmotionTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 396329751C62FA3500E316F0 /* YJEmotionTabBarButton.m */; };
 		3970747A1C64EC2300E9BD86 /* YJHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 397074791C64EC2300E9BD86 /* YJHttpTool.m */; };
+		397074841C659DE400E9BD86 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 397074831C659DE400E9BD86 /* libicucore.tbd */; };
+		397074881C659E0C00E9BD86 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 397074871C659E0C00E9BD86 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		39789F091C633E60001F7BDF /* YJEmotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 39789F081C633E60001F7BDF /* YJEmotion.m */; };
 		39789F0C1C6369D0001F7BDF /* YJEmotionPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39789F0B1C6369D0001F7BDF /* YJEmotionPageView.m */; };
 		39789F101C637E2C001F7BDF /* defaultInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39789F0D1C637E2C001F7BDF /* defaultInfo.plist */; };
@@ -108,6 +110,7 @@
 		39789F291C648B26001F7BDF /* YJEmotionAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 39789F281C648B26001F7BDF /* YJEmotionAttachment.m */; };
 		39789F2D1C649B54001F7BDF /* YJEmotionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 39789F2C1C649B54001F7BDF /* YJEmotionTool.m */; };
 		39789F341C64D222001F7BDF /* YJConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 39789F331C64D222001F7BDF /* YJConst.m */; };
+		39AA499D1C65C9F600A7E354 /* YJTextPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AA499C1C65C9F600A7E354 /* YJTextPart.m */; };
 		39DB514E1C5B1EE100AAC43C /* YJNewFeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DB514D1C5B1EE100AAC43C /* YJNewFeatureController.m */; };
 		39DB51531C5C5ADB00AAC43C /* YJOAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DB51521C5C5ADB00AAC43C /* YJOAuthController.m */; };
 		39DB51631C5C64C800AAC43C /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DB51571C5C64C800AAC43C /* AFHTTPSessionManager.m */; };
@@ -294,6 +297,9 @@
 		396329751C62FA3500E316F0 /* YJEmotionTabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJEmotionTabBarButton.m; sourceTree = "<group>"; };
 		397074781C64EC2300E9BD86 /* YJHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJHttpTool.h; sourceTree = "<group>"; };
 		397074791C64EC2300E9BD86 /* YJHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJHttpTool.m; sourceTree = "<group>"; };
+		397074831C659DE400E9BD86 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		397074861C659E0C00E9BD86 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		397074871C659E0C00E9BD86 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		39789F071C633E60001F7BDF /* YJEmotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJEmotion.h; sourceTree = "<group>"; };
 		39789F081C633E60001F7BDF /* YJEmotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJEmotion.m; sourceTree = "<group>"; };
 		39789F0A1C6369D0001F7BDF /* YJEmotionPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJEmotionPageView.h; sourceTree = "<group>"; };
@@ -318,6 +324,8 @@
 		39789F2C1C649B54001F7BDF /* YJEmotionTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJEmotionTool.m; sourceTree = "<group>"; };
 		39789F321C64D222001F7BDF /* YJConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJConst.h; sourceTree = "<group>"; };
 		39789F331C64D222001F7BDF /* YJConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJConst.m; sourceTree = "<group>"; };
+		39AA499B1C65C9F600A7E354 /* YJTextPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJTextPart.h; sourceTree = "<group>"; };
+		39AA499C1C65C9F600A7E354 /* YJTextPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJTextPart.m; sourceTree = "<group>"; };
 		39DB514C1C5B1EE100AAC43C /* YJNewFeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJNewFeatureController.h; sourceTree = "<group>"; };
 		39DB514D1C5B1EE100AAC43C /* YJNewFeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJNewFeatureController.m; sourceTree = "<group>"; };
 		39DB51511C5C5ADB00AAC43C /* YJOAuthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJOAuthController.h; sourceTree = "<group>"; };
@@ -346,6 +354,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				397074841C659DE400E9BD86 /* libicucore.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +364,7 @@
 		3961E3401C585DF900C503F1 = {
 			isa = PBXGroup;
 			children = (
+				397074831C659DE400E9BD86 /* libicucore.tbd */,
 				3961E34B1C585DF900C503F1 /* WeiboPractice */,
 				3961E34A1C585DF900C503F1 /* Products */,
 			);
@@ -396,8 +406,8 @@
 		3961E4721C59F06900C503F1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3961E4731C59F06900C503F1 /* Base */,
 				3961E47B1C59F06900C503F1 /* Category */,
+				3961E4731C59F06900C503F1 /* Base */,
 				396329551C60EB5E00E316F0 /* Compose */,
 				3961E4841C59F06900C503F1 /* Home */,
 				3961E48A1C59F06900C503F1 /* Me */,
@@ -542,6 +552,8 @@
 				396329321C5DC6C400E316F0 /* YJStatusFrame.m */,
 				396329341C5EFE1C00E316F0 /* YJStatusPhoto.h */,
 				396329351C5EFE1C00E316F0 /* YJStatusPhoto.m */,
+				39AA499B1C65C9F600A7E354 /* YJTextPart.h */,
+				39AA499C1C65C9F600A7E354 /* YJTextPart.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -867,6 +879,15 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
+		397074851C659E0C00E9BD86 /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				397074861C659E0C00E9BD86 /* RegexKitLite.h */,
+				397074871C659E0C00E9BD86 /* RegexKitLite.m */,
+			);
+			path = RegexKitLite;
+			sourceTree = "<group>";
+		};
 		39789F061C633E3F001F7BDF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -926,6 +947,7 @@
 		39DB51541C5C64A900AAC43C /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				397074851C659E0C00E9BD86 /* RegexKitLite */,
 				396328EE1C5CE1AA00E316F0 /* MJRefresh */,
 				396328CE1C5CC01000E316F0 /* MJExtension */,
 				396328961C5CBA2C00E316F0 /* SDWebImage */,
@@ -1079,6 +1101,7 @@
 				3961E4AA1C59F06900C503F1 /* YJHomeViewController.m in Sources */,
 				39789F261C64459E001F7BDF /* YJEmotionTextView.m in Sources */,
 				396328C61C5CBA2C00E316F0 /* UIImageView+WebCache.m in Sources */,
+				397074881C659E0C00E9BD86 /* RegexKitLite.m in Sources */,
 				396328E51C5CC01000E316F0 /* MJFoundation.m in Sources */,
 				396329241C5CE1AA00E316F0 /* MJRefreshBackNormalFooter.m in Sources */,
 				3961E4A91C59F06900C503F1 /* YJDiscoverViewController.m in Sources */,
@@ -1114,6 +1137,7 @@
 				396328CD1C5CBC4800E316F0 /* YJStatusModel.m in Sources */,
 				396329391C60504D00E316F0 /* YJStatusToolBar.m in Sources */,
 				39DB51631C5C64C800AAC43C /* AFHTTPSessionManager.m in Sources */,
+				39AA499D1C65C9F600A7E354 /* YJTextPart.m in Sources */,
 				396329731C622EEE00E316F0 /* YJEmotionListView.m in Sources */,
 				396329591C60EB9500E316F0 /* YJComposeViewController.m in Sources */,
 				396329331C5DC6C400E316F0 /* YJStatusFrame.m in Sources */,

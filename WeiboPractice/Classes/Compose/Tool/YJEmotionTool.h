@@ -19,9 +19,27 @@
 + (void)saveEmotion:(YJEmotion *)oneEmotion;
 /**
  *  读取<最近>表情数组
- *
- *  @return 返回读取到的<最近>表情
  */
 + (NSArray *)loadRecentEmotions;
+/**
+ *  读取<默认>表情
+ */
++ (NSArray *)defaultEmotions;
+/**
+ *  读取<emoji>表情
+ */
++ (NSArray *)emojiEmotions;
+/**
+ *  读取<浪小花>表情
+ */
++ (NSArray *)lxhEmotions;
+/**
+ *  根据文字描述获取表情数组
+ *
+ *  @param chs 传入的文字描述
+ *
+ *  @return 返回的表情
+ */
++ (YJEmotion *)emotionWithCHS:(NSString *)chs;
 
 @end

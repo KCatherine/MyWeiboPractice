@@ -54,10 +54,7 @@
 - (YJEmotionListView *)defaultListView {
     if (!_defaultListView) {
         _defaultListView = [[YJEmotionListView alloc] init];
-        
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"defaultInfo" ofType:@"plist"];
-        NSArray *defaultEmotions = [YJEmotion mj_objectArrayWithFile:path];
-        _defaultListView.emotions = defaultEmotions;
+        _defaultListView.emotions = [YJEmotionTool defaultEmotions];
 
     }
     return _defaultListView;
@@ -66,10 +63,7 @@
 - (YJEmotionListView *)emojiListView {
     if (!_emojiListView) {
         _emojiListView = [[YJEmotionListView alloc] init];
-        
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"emojiInfo" ofType:@"plist"];
-        NSArray *emojiEmotions = [YJEmotion mj_objectArrayWithFile:path];
-        _emojiListView.emotions = emojiEmotions;
+        _emojiListView.emotions = [YJEmotionTool emojiEmotions];
     }
     return _emojiListView;
 }
@@ -77,10 +71,7 @@
 - (YJEmotionListView *)lxhListView {
     if (!_lxhListView) {
         _lxhListView = [[YJEmotionListView alloc] init];
-        
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"lxhInfo" ofType:@"plist"];
-        NSArray *lxhEmotions = [YJEmotion mj_objectArrayWithFile:path];
-        _lxhListView.emotions = lxhEmotions;
+        _lxhListView.emotions = [YJEmotionTool lxhEmotions];
     }
     return _lxhListView;
 }

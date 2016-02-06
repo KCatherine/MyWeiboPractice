@@ -117,7 +117,7 @@
 //        [self.tableView reloadData];
 //        
 //        // 结束刷新
-//        [control endRefreshing];
+//        [self.tableView.mj_header endRefreshing];
 //        
 //        // 显示最新微博的数量
 //        [self showNewestStatusCount:newStatuses.count];
@@ -136,8 +136,7 @@
     }
     
     [YJHttpTool GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:paras success:^(id responseObject) {
-        
-        NSLog(@"%@", responseObject);
+
         NSArray *newest = [YJStatusModel mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         NSMutableArray *newFrames = [self statusFramesWithStatuses:newest];
         

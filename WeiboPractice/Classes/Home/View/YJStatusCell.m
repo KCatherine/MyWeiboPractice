@@ -190,23 +190,18 @@
     self.sourceLabel.text = oneStatus.source;
     
     self.contentLabel.frame = statusCellFrame.contentLabelF;
-    self.contentLabel.text = oneStatus.text;
+    self.contentLabel.attributedText = oneStatus.attributedText;
     
     //如果有转发微博则设置
     if (oneStatus.retweeted_status) {
         YJStatusModel *oneReTweetStatus = oneStatus.retweeted_status;
-        YJUserModel *oneReTweetUser = oneReTweetStatus.user;
         
         self.retweet.hidden = NO;
         self.retweet.frame = statusCellFrame.retweetF;
         
         self.retweetContentLabel.frame = statusCellFrame.retweetContentLabelF;
-        if (oneReTweetUser.name) {
-            self.retweetContentLabel.text = [NSString stringWithFormat:@"@%@ : %@", oneReTweetUser.name, oneReTweetStatus.text];
-        } else {
-            self.retweetContentLabel.text = oneReTweetStatus.text;
-        }
-        
+        self.retweetContentLabel.attributedText = oneStatus.retweetedAttributedText;
+
         if (oneStatus.retweeted_status.pic_urls.count) {
             self.retweetPhotosView.hidden = NO;
             self.retweetPhotosView.frame = statusCellFrame.retweetPhotosViewF;

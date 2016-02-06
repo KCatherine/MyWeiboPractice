@@ -21,6 +21,10 @@
  */
 @property (nonatomic, copy) NSString *text;
 /**
+ *  带属性的微博内容
+ */
+@property (nonatomic, copy) NSAttributedString *attributedText;
+/**
  *  微博创建时间
  */
 @property (nonatomic, copy) NSString *created_at;
@@ -40,6 +44,10 @@
  *  被转发的原微博信息字段，当该微博为转发微博时返回
  */
 @property (nonatomic, strong) YJStatusModel *retweeted_status;
+/**
+ *  带属性的转发微博内容
+ */
+@property (nonatomic, copy) NSAttributedString *retweetedAttributedText;
 /**
  *  转发数
  */

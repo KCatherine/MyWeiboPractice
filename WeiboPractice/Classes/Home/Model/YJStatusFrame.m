@@ -52,7 +52,7 @@
     CGFloat contentX = iconX;
     CGFloat contentY = MAX(CGRectGetMaxY(_iconViewF), CGRectGetMaxY(_timeLabelF)) + CELL_BORDER_WIDTH;
     CGFloat contentW = cellW - CELL_BORDER_WIDTH * 2;
-    CGSize contentSize = [statusModel.text sizeWithFont:TextFont maxSize:CGSizeMake(contentW, MAXFLOAT)];
+    CGSize contentSize = [statusModel.attributedText boundingRectWithSize:CGSizeMake(contentW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
     _contentLabelF = CGRectMake(contentX, contentY, contentSize.width, contentSize.height);
     //计算原创微博整体的frame
     CGFloat originalH = 0;
@@ -75,12 +75,10 @@
     CGFloat toolBarY = 0;
     if (statusModel.retweeted_status) {
         YJStatusModel *oneReTweetStatus = statusModel.retweeted_status;
-        YJUserModel *oneReTweetUser = oneReTweetStatus.user;
         
         CGFloat reTweetContentX = CELL_BORDER_WIDTH;
         CGFloat reTweetContentY = CELL_BORDER_WIDTH;
-        NSString *reTweetContentLabel = [NSString stringWithFormat:@"@%@ : %@", oneReTweetUser.name, oneReTweetStatus.text];
-        CGSize reTweetContentSize = [reTweetContentLabel sizeWithFont:ReTweetTextFont maxSize:CGSizeMake(contentW, MAXFLOAT)];
+        CGSize reTweetContentSize = [statusModel.retweetedAttributedText boundingRectWithSize:CGSizeMake(contentW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
         _retweetContentLabelF = CGRectMake(reTweetContentX, reTweetContentY, reTweetContentSize.width, reTweetContentSize.height);
         
         CGFloat reTweetH = 0;
