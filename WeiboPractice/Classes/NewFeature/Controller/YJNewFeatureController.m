@@ -49,8 +49,8 @@
     imageScroll.contentSize = CGSizeMake(TotalImage * imageW, 0);
     
     pageControl.numberOfPages = TotalImage;
-    pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:253/255.0 green:98/255.0 blue:42/255.0 alpha:1.0];
-    pageControl.pageIndicatorTintColor = [UIColor colorWithRed:189/255.0 green:189/255.0 blue:189/255.0 alpha:1.0];
+    pageControl.currentPageIndicatorTintColor = YJ_COLOR(253, 98, 42);
+    pageControl.pageIndicatorTintColor = YJ_COLOR(189, 189, 189);
     
     self.imageScroll = imageScroll;
     self.pageControl = pageControl;

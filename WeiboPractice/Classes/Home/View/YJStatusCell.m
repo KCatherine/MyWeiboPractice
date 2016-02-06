@@ -14,6 +14,7 @@
 #import "YJStatusToolBar.h"
 #import "YJStatusPhotosView.h"
 #import "YJIconView.h"
+#import "YJStatusTextView.h"
 
 #import "UIImageView+WebCache.h"
 
@@ -26,10 +27,10 @@
 @property (nonatomic, weak) UILabel *nameLabel;
 @property (nonatomic, weak) UILabel *timeLabel;
 @property (nonatomic, weak) UILabel *sourceLabel;
-@property (nonatomic, weak) UILabel *contentLabel;
+@property (nonatomic, weak) YJStatusTextView *contentLabel;
 //转发微博
 @property (nonatomic, weak) UIButton *retweet;
-@property (nonatomic, weak) UILabel *retweetContentLabel;
+@property (nonatomic, weak) YJStatusTextView *retweetContentLabel;
 @property (nonatomic, weak) YJStatusPhotosView *retweetPhotosView;
 //工具条
 @property (nonatomic, weak) YJStatusToolBar *toolBar;
@@ -87,7 +88,7 @@
     // 4.来源
     UILabel *sourceLabel = [[UILabel alloc] init];
     sourceLabel.font = TimeFont;
-    sourceLabel.textColor = [UIColor colorWithRed:166/255.0 green:166/255.0 blue:166/255.0 alpha:1.0];
+    sourceLabel.textColor = YJ_COLOR(166, 166, 166);
     [original addSubview:sourceLabel];
     self.sourceLabel = sourceLabel;
     
@@ -99,8 +100,7 @@
     self.timeLabel = timeLabel;
     
     //6.内容
-    UILabel *contentLabel = [[UILabel alloc] init];
-    contentLabel.numberOfLines = 0;
+    YJStatusTextView *contentLabel = [[YJStatusTextView alloc] init];
     contentLabel.font = TextFont;
     [original addSubview:contentLabel];
     self.contentLabel = contentLabel;
@@ -124,8 +124,7 @@
     self.retweet = retweet;
     
     //1.内容
-    UILabel *retweetContentLabel = [[UILabel alloc] init];
-    retweetContentLabel.numberOfLines = 0;
+    YJStatusTextView *retweetContentLabel = [[YJStatusTextView alloc] init];
     retweetContentLabel.font = ReTweetTextFont;
     [retweet addSubview:retweetContentLabel];
     self.retweetContentLabel = retweetContentLabel;

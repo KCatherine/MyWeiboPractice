@@ -8,13 +8,14 @@
 
 NSString * const YJTopicPattern = @"#[0-9a-zA-Z\\u4e00-\\u9fa5]+#";
 NSString * const YJUserPattern = @"@[0-9a-zA-Z\\u4e00-\\u9fa5-_]+";
-NSString * const YJURLPattern = @"\\b((http[s]?://?|www[.])[^\\s()<>]+(?:\\([\\w\\d]+\\)|([^[:punct:]\\s]|/)))";
+NSString * const YJURLPattern = @"[\\b]?((http[s]?://?|www[.])[^\\s()<>]+(?:\\([\\w\\d]+\\)|([^[:punct:]\\s]|/)))";
 NSString * const YJEmotionPattern = @"\\[[a-zA-Z\\u4e00-\\u9fa5]+\\]";
 
 #import "YJStatusModel.h"
 #import "YJUserModel.h"
 #import "YJStatusPhoto.h"
 #import "YJTextPart.h"
+#import "YJSpecial.h"
 #import "YJEmotionTool.h"
 #import "YJEmotion.h"
 
@@ -106,7 +107,13 @@ NSString * const YJEmotionPattern = @"\\[[a-zA-Z\\u4e00-\\u9fa5]+\\]";
 - (void)setRetweeted_status:(YJStatusModel *)retweeted_status {
     _retweeted_status = retweeted_status;
     
-    NSString *retweetContent = [NSString stringWithFormat:@"@%@:%@", retweeted_status.user.name, retweeted_status.text];
+    NSString *retweetContent = nil;
+    if (retweeted_status.user) {
+        retweetContent = [NSString stringWithFormat:@"@%@:%@", retweeted_status.user.name, retweeted_status.text];
+    } else {
+        retweetContent = [NSString stringWithFormat:@"%@", retweeted_status.text];
+    }
+    
     NSMutableAttributedString *attrStr = [self attributedTextWithText:retweetContent];
 
     //设置转发微博的字体
@@ -157,6 +164,7 @@ NSString * const YJEmotionPattern = @"\\[[a-zA-Z\\u4e00-\\u9fa5]+\\]";
         return NSOrderedAscending;
     }];
     //依次取出特殊字符串进行转换
+    NSMutableArray *specials = [NSMutableArray array];
     for (YJTextPart *part in parts) {
         NSAttributedString *subStr = nil;
         if (part.isEmotion) {
@@ -171,12 +179,21 @@ NSString * const YJEmotionPattern = @"\\[[a-zA-Z\\u4e00-\\u9fa5]+\\]";
             }
         } else if (part.isSpecial) {
             subStr = [[NSAttributedString alloc] initWithString:part.text
-                                                     attributes:@{NSForegroundColorAttributeName : [UIColor blueColor]}];
+                                                     attributes:@{NSForegroundColorAttributeName : YJ_COLOR(82, 126, 173)}];
+            //将特殊字符保存成对象方便在TextView中调用
+            YJSpecial *special = [[YJSpecial alloc] init];
+            special.text = part.text;
+            NSUInteger loc = attrStr.length;
+            NSUInteger len = part.text.length;
+            special.range = NSMakeRange(loc, len);
+            [specials addObject:special];
         } else {
             subStr = [[NSAttributedString alloc] initWithString:part.text];
         }
         [attrStr appendAttributedString:subStr];
     }
+    
+    [attrStr addAttribute:YJSpecialKey value:specials range:NSMakeRange(0, 1)];
     
     return attrStr;
 }

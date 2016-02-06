@@ -52,7 +52,7 @@
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [UIColor colorWithRed:211/255.0 green:211/255.0 blue:211/255.0 alpha:1.0];
+    self.tableView.backgroundColor = YJ_COLOR(211, 211, 211);
 
 }
 #pragma mark - 设置导航栏
