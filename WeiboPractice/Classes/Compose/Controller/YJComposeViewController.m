@@ -14,6 +14,7 @@
 #import "YJEmotionKeyBoard.h"
 #import "YJEmotion.h"
 
+#import "YJHttpTool.h"
 #import "AFNetworking.h"
 #import "MBProgressHUD+MJ.h"
 
@@ -199,8 +200,6 @@
  *  发送纯文字微博
  */
 - (void)sendWithoutPhotos {
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    
     //    纯文字微博
     //    access_token 采用OAuth授权方式为必填参数，OAuth授权后获得。
     //    status 要发布的微博文本内容，必须做URLencode，内容不超过140个汉字。
@@ -209,11 +208,11 @@
     paras[@"access_token"] = [YJAccountTool loadAccount].access_token;
     paras[@"status"] = self.textView.fullText;
     
-    [mgr POST:@"https://api.weibo.com/2/statuses/update.json" parameters:paras progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [YJHttpTool POST:@"https://api.weibo.com/2/statuses/update.json" parameters:paras success:^(id responseObject) {
         [MBProgressHUD showSuccess:@"发送成功"];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSError *error) {
         [MBProgressHUD showError:@"发送失败"];
-        NSLog(@"%@", error);
+        NSLog(@"send text status error : %@", error);
     }];
 }
 
