@@ -93,20 +93,13 @@
 }
 #pragma mark - 设置下拉刷新
 - (void)setUpRefresh {
-    //设置refreshControl
-    UIRefreshControl *control = [[UIRefreshControl alloc] init];
-    [control addTarget:self action:@selector(refreshStateChange:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:control];
-    //开始刷新
-    [control beginRefreshing];
-    [self refreshStateChange:control];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshStateChange)];
+    [self.tableView.mj_header beginRefreshing];
 }
 /**
  *  下拉刷新时调用
- *
- *  @param control 下拉刷新控件
  */
-- (void)refreshStateChange:(UIRefreshControl *)control {
+- (void)refreshStateChange {
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        NSDictionary *responseObject = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"fakeStatus" ofType:@"plist"]];
 //        // 将 "微博字典"数组 转为 "微博模型"数组
@@ -153,12 +146,12 @@
         [self.statusFrames insertObjects:newFrames atIndexes:indexSet];
         
         [self.tableView reloadData];
-        [control endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         [self showNewestStatusCount:newest.count];
         
     } failure:^(NSError *error) {
         NSLog(@"refresh status error : %@", error);
-        [control endRefreshing];
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 #pragma mark - 显示新数据数量
