@@ -8,7 +8,7 @@
 
 NSString * const YJTopicPattern = @"#[0-9a-zA-Z\\u4e00-\\u9fa5]+#";
 NSString * const YJUserPattern = @"@[0-9a-zA-Z\\u4e00-\\u9fa5-_]+";
-NSString * const YJURLPattern = @"[\\b]?((http[s]?://?|www[.])[^\\s()<>]+(?:\\([\\w\\d]+\\)|([^[:punct:]\\s]|/)))";
+NSString * const YJURLPattern = @"\\bhttps?://[a-zA-Z0-9\\-.]+(?:(?:/[a-zA-Z0-9\\-._?,’+\\&%$=~*!():@\\\\]*)+)?";
 NSString * const YJEmotionPattern = @"\\[[a-zA-Z\\u4e00-\\u9fa5]+\\]";
 
 #import "YJStatusModel.h"
@@ -99,7 +99,8 @@ NSString * const YJEmotionPattern = @"\\[[a-zA-Z\\u4e00-\\u9fa5]+\\]";
     NSMutableAttributedString *attrStr = [self attributedTextWithText:text];
 
     //设置正文的字体
-    [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, attrStr.length)];
+    [attrStr addAttribute:NSFontAttributeName value:TextFont range:NSMakeRange(0, attrStr.length)];
+//    [attrStr addAttribute:NSForegroundColorAttributeName value:YJ_COLOR(51, 51, 51) range:NSMakeRange(0, attrStr.length)];
     
     self.attributedText = attrStr;
 }
@@ -117,7 +118,8 @@ NSString * const YJEmotionPattern = @"\\[[a-zA-Z\\u4e00-\\u9fa5]+\\]";
     NSMutableAttributedString *attrStr = [self attributedTextWithText:retweetContent];
 
     //设置转发微博的字体
-    [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13] range:NSMakeRange(0, attrStr.length)];
+    [attrStr addAttribute:NSFontAttributeName value:ReTweetTextFont range:NSMakeRange(0, attrStr.length)];
+//    [attrStr addAttribute:NSForegroundColorAttributeName value:YJ_COLOR(93, 93, 93) range:NSMakeRange(0, attrStr.length)];
     
     self.retweetedAttributedText = attrStr;
 }

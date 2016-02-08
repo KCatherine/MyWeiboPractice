@@ -9,10 +9,6 @@
 #import <Foundation/Foundation.h>
 
 #define CELL_BORDER_WIDTH 10
-#define NameFont [UIFont systemFontOfSize:14]
-#define TimeFont [UIFont systemFontOfSize:12]
-#define TextFont [UIFont systemFontOfSize:15]
-#define ReTweetTextFont [UIFont systemFontOfSize:13]
 
 @class YJStatusModel;
 

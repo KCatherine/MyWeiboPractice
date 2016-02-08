@@ -17,5 +17,9 @@
  *  特殊文字块的位置
  */
 @property (nonatomic, assign) NSRange range;
+/**
+ *  特殊文字块的矩形框
+ */
+@property (nonatomic, assign) NSMutableArray *rects;
 
 @end
