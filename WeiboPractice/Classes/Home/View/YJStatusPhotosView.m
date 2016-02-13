@@ -10,7 +10,7 @@
 #import "YJStatusPhoto.h"
 #import "YJStatusPhotoView.h"
 
-#define STATUS_PHOTO_WH 70
+#define STATUS_PHOTO_WH 93
 #define PHOTO_MARGIN 10
 #define MAX_COLUMNS(COUNT) ((COUNT==4)?2:3)
 

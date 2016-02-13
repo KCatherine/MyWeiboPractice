@@ -101,6 +101,10 @@ NSString * const YJEmotionPattern = @"\\[[a-zA-Z\\u4e00-\\u9fa5]+\\]";
     //设置正文的字体
     [attrStr addAttribute:NSFontAttributeName value:TextFont range:NSMakeRange(0, attrStr.length)];
 //    [attrStr addAttribute:NSForegroundColorAttributeName value:YJ_COLOR(51, 51, 51) range:NSMakeRange(0, attrStr.length)];
+    //设置正文的行间距
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineSpacing = 3;
+    [attrStr addAttribute:NSParagraphStyleAttributeName value:paragraph range:NSMakeRange(0, attrStr.length)];
     
     self.attributedText = attrStr;
 }
@@ -120,6 +124,10 @@ NSString * const YJEmotionPattern = @"\\[[a-zA-Z\\u4e00-\\u9fa5]+\\]";
     //设置转发微博的字体
     [attrStr addAttribute:NSFontAttributeName value:ReTweetTextFont range:NSMakeRange(0, attrStr.length)];
 //    [attrStr addAttribute:NSForegroundColorAttributeName value:YJ_COLOR(93, 93, 93) range:NSMakeRange(0, attrStr.length)];
+    //设置转发微博的行间距
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineSpacing = 3;
+    [attrStr addAttribute:NSParagraphStyleAttributeName value:paragraph range:NSMakeRange(0, attrStr.length)];
     
     self.retweetedAttributedText = attrStr;
 }

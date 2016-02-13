@@ -33,7 +33,7 @@
     //如果是VIP，则计算VIP的frame
     if (user.isVip) {
         CGFloat vipX = CGRectGetMaxX(_nameLabelF) + CELL_BORDER_WIDTH;
-        CGFloat vipY = nameY;
+        CGFloat vipY = nameY + 3;
         CGFloat vipW = 14;
         CGFloat vipH = 14;
         _vipViewF = CGRectMake(vipX, vipY, vipW, vipH);
