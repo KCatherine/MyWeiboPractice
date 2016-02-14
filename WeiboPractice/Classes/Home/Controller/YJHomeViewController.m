@@ -16,6 +16,7 @@
 #import "YJStatusCell.h"
 
 #import "YJHttpTool.h"
+#import "YJStatusTool.h"
 #import "UIImageView+WebCache.h"
 #import "MJExtension.h"
 #import "MJRefresh.h"
@@ -135,9 +136,10 @@
         paras[@"since_id"] = firstStatus.idstr;
     }
     
-    [YJHttpTool GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:paras success:^(id responseObject) {
-
-        NSArray *newest = [YJStatusModel mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+    //先尝试从数据库中加载数据
+    NSArray *newest_sb = [YJStatusTool statusesWithParams:paras];
+    if (newest_sb.count) {
+        NSArray *newest = [YJStatusModel mj_objectArrayWithKeyValuesArray:newest_sb];
         NSMutableArray *newFrames = [self statusFramesWithStatuses:newest];
         
         NSRange range = NSMakeRange(0, newFrames.count);
@@ -147,11 +149,27 @@
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
         [self showNewestStatusCount:newest.count];
-        
-    } failure:^(NSError *error) {
-        NSLog(@"refresh status error : %@", error);
-        [self.tableView.mj_header endRefreshing];
-    }];
+    } else {
+        [YJHttpTool GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:paras success:^(id responseObject) {
+            
+            [YJStatusTool saveStatuses:responseObject[@"statuses"]];
+            
+            NSArray *newest = [YJStatusModel mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+            NSMutableArray *newFrames = [self statusFramesWithStatuses:newest];
+            
+            NSRange range = NSMakeRange(0, newFrames.count);
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+            [self.statusFrames insertObjects:newFrames atIndexes:indexSet];
+            
+            [self.tableView reloadData];
+            [self.tableView.mj_header endRefreshing];
+            [self showNewestStatusCount:newest.count];
+            
+        } failure:^(NSError *error) {
+            NSLog(@"refresh status error : %@", error);
+            [self.tableView.mj_header endRefreshing];
+        }];
+    }
 }
 #pragma mark - 显示新数据数量
 - (void)showNewestStatusCount:(NSInteger)count {
@@ -199,9 +217,10 @@
         paras[@"access_token"] = account.access_token;
         paras[@"max_id"] = lastStatus.idstr;
         
-        [YJHttpTool GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:paras success:^(id responseObject) {
-            
-            NSArray *more = [YJStatusModel mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        //先尝试从沙盒中读取数据
+        NSArray *more_sb = [YJStatusTool statusesWithParams:paras];
+        if (more_sb.count) {
+            NSArray *more = [YJStatusModel mj_objectArrayWithKeyValuesArray:more_sb];
             NSMutableArray *newFrames = [self statusFramesWithStatuses:more];
             
             [self.statusFrames removeLastObject];
@@ -209,10 +228,24 @@
             
             [self.tableView reloadData];
             [self.tableView.mj_footer endRefreshing];
-            
-        } failure:^(NSError *error) {
-            NSLog(@"load more error : %@", error);
-        }];
+        } else {
+            [YJHttpTool GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:paras success:^(id responseObject) {
+                
+                [YJStatusTool saveStatuses:responseObject[@"statuses"]];
+                
+                NSArray *more = [YJStatusModel mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+                NSMutableArray *newFrames = [self statusFramesWithStatuses:more];
+                
+                [self.statusFrames removeLastObject];
+                [self.statusFrames addObjectsFromArray:newFrames];
+                
+                [self.tableView reloadData];
+                [self.tableView.mj_footer endRefreshing];
+                
+            } failure:^(NSError *error) {
+                NSLog(@"load more error : %@", error);
+            }];
+        }
     }];
 }
 #pragma mark - 获得未读消息数

@@ -113,6 +113,13 @@
 		39AA499D1C65C9F600A7E354 /* YJTextPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AA499C1C65C9F600A7E354 /* YJTextPart.m */; };
 		39AA49A01C65E6CD00A7E354 /* YJStatusTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AA499F1C65E6CD00A7E354 /* YJStatusTextView.m */; };
 		39AA49A31C6624A800A7E354 /* YJSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AA49A21C6624A800A7E354 /* YJSpecial.m */; };
+		39AA49D61C6F5A1900A7E354 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AA49CB1C6F5A1900A7E354 /* FMDatabase.m */; };
+		39AA49D71C6F5A1900A7E354 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AA49CD1C6F5A1900A7E354 /* FMDatabaseAdditions.m */; };
+		39AA49D81C6F5A1900A7E354 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AA49CF1C6F5A1900A7E354 /* FMDatabasePool.m */; };
+		39AA49D91C6F5A1900A7E354 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AA49D11C6F5A1900A7E354 /* FMDatabaseQueue.m */; };
+		39AA49DA1C6F5A1900A7E354 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AA49D41C6F5A1900A7E354 /* FMResultSet.m */; };
+		39AA49DE1C6F5D6100A7E354 /* YJStatusTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AA49DD1C6F5D6100A7E354 /* YJStatusTool.m */; };
+		39AA49E01C6F5D7600A7E354 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AA49DF1C6F5D7600A7E354 /* libsqlite3.0.tbd */; };
 		39DB514E1C5B1EE100AAC43C /* YJNewFeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DB514D1C5B1EE100AAC43C /* YJNewFeatureController.m */; };
 		39DB51531C5C5ADB00AAC43C /* YJOAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DB51521C5C5ADB00AAC43C /* YJOAuthController.m */; };
 		39DB51631C5C64C800AAC43C /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DB51571C5C64C800AAC43C /* AFHTTPSessionManager.m */; };
@@ -332,6 +339,20 @@
 		39AA499F1C65E6CD00A7E354 /* YJStatusTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJStatusTextView.m; sourceTree = "<group>"; };
 		39AA49A11C6624A800A7E354 /* YJSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJSpecial.h; sourceTree = "<group>"; };
 		39AA49A21C6624A800A7E354 /* YJSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJSpecial.m; sourceTree = "<group>"; };
+		39AA49CA1C6F5A1900A7E354 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		39AA49CB1C6F5A1900A7E354 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		39AA49CC1C6F5A1900A7E354 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		39AA49CD1C6F5A1900A7E354 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		39AA49CE1C6F5A1900A7E354 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		39AA49CF1C6F5A1900A7E354 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		39AA49D01C6F5A1900A7E354 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		39AA49D11C6F5A1900A7E354 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		39AA49D21C6F5A1900A7E354 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		39AA49D31C6F5A1900A7E354 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		39AA49D41C6F5A1900A7E354 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		39AA49DC1C6F5D6100A7E354 /* YJStatusTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJStatusTool.h; sourceTree = "<group>"; };
+		39AA49DD1C6F5D6100A7E354 /* YJStatusTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJStatusTool.m; sourceTree = "<group>"; };
+		39AA49DF1C6F5D7600A7E354 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		39DB514C1C5B1EE100AAC43C /* YJNewFeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJNewFeatureController.h; sourceTree = "<group>"; };
 		39DB514D1C5B1EE100AAC43C /* YJNewFeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJNewFeatureController.m; sourceTree = "<group>"; };
 		39DB51511C5C5ADB00AAC43C /* YJOAuthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJOAuthController.h; sourceTree = "<group>"; };
@@ -360,6 +381,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39AA49E01C6F5D7600A7E354 /* libsqlite3.0.tbd in Frameworks */,
 				397074841C659DE400E9BD86 /* libicucore.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,6 +392,7 @@
 		3961E3401C585DF900C503F1 = {
 			isa = PBXGroup;
 			children = (
+				39AA49DF1C6F5D7600A7E354 /* libsqlite3.0.tbd */,
 				397074831C659DE400E9BD86 /* libicucore.tbd */,
 				3961E34B1C585DF900C503F1 /* WeiboPractice */,
 				3961E34A1C585DF900C503F1 /* Products */,
@@ -885,6 +908,8 @@
 			children = (
 				397074781C64EC2300E9BD86 /* YJHttpTool.h */,
 				397074791C64EC2300E9BD86 /* YJHttpTool.m */,
+				39AA49DC1C6F5D6100A7E354 /* YJStatusTool.h */,
+				39AA49DD1C6F5D6100A7E354 /* YJStatusTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -916,6 +941,24 @@
 				39789F2C1C649B54001F7BDF /* YJEmotionTool.m */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		39AA49C91C6F5A1900A7E354 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				39AA49CA1C6F5A1900A7E354 /* FMDatabase.h */,
+				39AA49CB1C6F5A1900A7E354 /* FMDatabase.m */,
+				39AA49CC1C6F5A1900A7E354 /* FMDatabaseAdditions.h */,
+				39AA49CD1C6F5A1900A7E354 /* FMDatabaseAdditions.m */,
+				39AA49CE1C6F5A1900A7E354 /* FMDatabasePool.h */,
+				39AA49CF1C6F5A1900A7E354 /* FMDatabasePool.m */,
+				39AA49D01C6F5A1900A7E354 /* FMDatabaseQueue.h */,
+				39AA49D11C6F5A1900A7E354 /* FMDatabaseQueue.m */,
+				39AA49D21C6F5A1900A7E354 /* FMDB.h */,
+				39AA49D31C6F5A1900A7E354 /* FMResultSet.h */,
+				39AA49D41C6F5A1900A7E354 /* FMResultSet.m */,
+			);
+			path = fmdb;
 			sourceTree = "<group>";
 		};
 		39DB514A1C5B1EC600AAC43C /* NewFeature */ = {
@@ -957,6 +1000,7 @@
 		39DB51541C5C64A900AAC43C /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				39AA49C91C6F5A1900A7E354 /* fmdb */,
 				397074851C659E0C00E9BD86 /* RegexKitLite */,
 				396328EE1C5CE1AA00E316F0 /* MJRefresh */,
 				396328CE1C5CC01000E316F0 /* MJExtension */,
@@ -1104,10 +1148,12 @@
 				39789F231C6441F9001F7BDF /* UITextView+Extension.m in Sources */,
 				396328E91C5CC01000E316F0 /* NSObject+MJClass.m in Sources */,
 				396328E81C5CC01000E316F0 /* MJPropertyType.m in Sources */,
+				39AA49D81C6F5A1900A7E354 /* FMDatabasePool.m in Sources */,
 				396329251C5CE1AA00E316F0 /* MJRefreshBackStateFooter.m in Sources */,
 				39DB51651C5C64C800AAC43C /* AFSecurityPolicy.m in Sources */,
 				396328ED1C5CC01000E316F0 /* NSString+MJExtension.m in Sources */,
 				39789F291C648B26001F7BDF /* YJEmotionAttachment.m in Sources */,
+				39AA49D71C6F5A1900A7E354 /* FMDatabaseAdditions.m in Sources */,
 				3961E4AA1C59F06900C503F1 /* YJHomeViewController.m in Sources */,
 				39789F261C64459E001F7BDF /* YJEmotionTextView.m in Sources */,
 				396328C61C5CBA2C00E316F0 /* UIImageView+WebCache.m in Sources */,
@@ -1129,6 +1175,7 @@
 				39789F151C637F28001F7BDF /* NSString+Emoji.m in Sources */,
 				396329361C5EFE1C00E316F0 /* YJStatusPhoto.m in Sources */,
 				396328E41C5CC01000E316F0 /* MJExtensionConst.m in Sources */,
+				39AA49DE1C6F5D6100A7E354 /* YJStatusTool.m in Sources */,
 				396329601C610EEB00E316F0 /* MBProgressHUD+MJ.m in Sources */,
 				396328BD1C5CBA2C00E316F0 /* SDWebImageDownloader.m in Sources */,
 				396328BE1C5CBA2C00E316F0 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -1137,9 +1184,11 @@
 				3970747A1C64EC2300E9BD86 /* YJHttpTool.m in Sources */,
 				396328BC1C5CBA2C00E316F0 /* SDWebImageDecoder.m in Sources */,
 				396328BF1C5CBA2C00E316F0 /* SDWebImageManager.m in Sources */,
+				39AA49DA1C6F5A1900A7E354 /* FMResultSet.m in Sources */,
 				3963291D1C5CE1AA00E316F0 /* MJRefreshComponent.m in Sources */,
 				396329211C5CE1AA00E316F0 /* MJRefreshAutoNormalFooter.m in Sources */,
 				39DB51681C5C64C800AAC43C /* AFURLSessionManager.m in Sources */,
+				39AA49D61C6F5A1900A7E354 /* FMDatabase.m in Sources */,
 				39DB516C1C5C73AA00AAC43C /* YJAccountModel.m in Sources */,
 				396329481C609F0D00E316F0 /* YJStatusPhotosView.m in Sources */,
 				3961E4AC1C59F06900C503F1 /* YJMessageViewController.m in Sources */,
@@ -1167,6 +1216,7 @@
 				396328C31C5CBA2C00E316F0 /* UIImage+MultiFormat.m in Sources */,
 				396329221C5CE1AA00E316F0 /* MJRefreshAutoStateFooter.m in Sources */,
 				3961E4AB1C59F06900C503F1 /* YJProfileViewController.m in Sources */,
+				39AA49D91C6F5A1900A7E354 /* FMDatabaseQueue.m in Sources */,
 				396329271C5CE1AA00E316F0 /* MJRefreshNormalHeader.m in Sources */,
 				3963296D1C622DA300E316F0 /* YJEmotionKeyBoard.m in Sources */,
 				3963292D1C5CE1AA00E316F0 /* UIView+MJExtension.m in Sources */,
