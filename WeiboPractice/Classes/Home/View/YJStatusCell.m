@@ -16,9 +16,11 @@
 #import "YJIconView.h"
 #import "YJStatusTextView.h"
 
+#import "YJRepostViewController.h"
+
 #import "UIImageView+WebCache.h"
 
-@interface YJStatusCell ()
+@interface YJStatusCell ()<YJStatusToolBarDelegate>
 //原创微博
 @property (nonatomic, weak) UIButton *original;
 @property (nonatomic, weak) YJIconView *iconView;
@@ -137,6 +139,7 @@
 //进行工具条控件的添加和设置
 - (void)setUpToolBar {
     YJStatusToolBar *toolBar = [YJStatusToolBar statusToolBar];
+    toolBar.delegate = self;
     [self.contentView addSubview:toolBar];
     self.toolBar = toolBar;
 }
@@ -225,6 +228,22 @@
         cell = [[YJStatusCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseID];
     }
     return cell;
+}
+
+- (void)statusToolBar:(YJStatusToolBar *)toolBar DidClickButton:(YJStatusToolBarButtonType)type {
+    switch (type) {
+        case YJStatusToolBarButtonTypeRepost:
+            [[NSNotificationCenter defaultCenter] postNotificationName:YJRepostButtonDidClickNotification object:self.statusCellFrame.statusModel];
+            break;
+            
+        case YJStatusToolBarButtonTypeComment:
+            [[NSNotificationCenter defaultCenter] postNotificationName:YJCommentButtonDidClickNotification object:self.statusCellFrame.statusModel];
+            break;
+            
+        case YJStatusToolBarButtonTypeGood:
+            NSLog(@"赞");
+            break;
+    }
 }
 
 @end

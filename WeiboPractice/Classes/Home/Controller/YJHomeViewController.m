@@ -6,6 +6,9 @@
 //  Copyright © 2016年 杨璟. All rights reserved.
 //
 
+#import "YJBaseNaviController.h"
+#import "YJRepostViewController.h"
+
 #import "YJHomeViewController.h"
 #import "YJDropDownMenu.h"
 #import "YJTitleButton.h"
@@ -54,6 +57,9 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = YJ_COLOR(211, 211, 211);
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(repostBtnClick:) name:YJRepostButtonDidClickNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commentBtnClick:) name:YJCommentButtonDidClickNotification object:nil];
 
 }
 #pragma mark - 设置导航栏
@@ -101,30 +107,6 @@
  *  下拉刷新时调用
  */
 - (void)refreshStateChange {
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        NSDictionary *responseObject = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"fakeStatus" ofType:@"plist"]];
-//        // 将 "微博字典"数组 转为 "微博模型"数组
-//        NSArray *newStatuses = [YJStatusModel mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-//        
-//        // 将 HWStatus数组 转为 HWStatusFrame数组
-//        NSArray *newFrames = [self statusFramesWithStatuses:newStatuses];
-//        
-//        // 将最新的微博数据，添加到总数组的最前面
-//        NSRange range = NSMakeRange(0, newFrames.count);
-//        NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
-//        [self.statusFrames insertObjects:newFrames atIndexes:set];
-//        
-//        // 刷新表格
-//        [self.tableView reloadData];
-//        
-//        // 结束刷新
-//        [self.tableView.mj_header endRefreshing];
-//        
-//        // 显示最新微博的数量
-//        [self showNewestStatusCount:newStatuses.count];
-//    });
-//    
-//    return;
     
     YJStatusFrame *firstStatusFrame = [self.statusFrames firstObject];
     YJStatusModel *firstStatus = firstStatusFrame.statusModel;
@@ -136,10 +118,9 @@
         paras[@"since_id"] = firstStatus.idstr;
     }
     
-    //先尝试从数据库中加载数据
-    NSArray *newest_sb = [YJStatusTool statusesWithParams:paras];
-    if (newest_sb.count) {
-        NSArray *newest = [YJStatusModel mj_objectArrayWithKeyValuesArray:newest_sb];
+    //定义一个block处理新数据
+    void (^dealingNewResult)(NSArray *) = ^(NSArray *newestStatus){
+        NSArray *newest = [YJStatusModel mj_objectArrayWithKeyValuesArray:newestStatus];
         NSMutableArray *newFrames = [self statusFramesWithStatuses:newest];
         
         NSRange range = NSMakeRange(0, newFrames.count);
@@ -149,21 +130,18 @@
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
         [self showNewestStatusCount:newest.count];
+    };
+    
+    //先尝试从数据库中加载数据
+    NSArray *newest_sb = [YJStatusTool statusesWithParams:paras];
+    if (newest_sb.count) {
+        dealingNewResult(newest_sb);
     } else {
         [YJHttpTool GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:paras success:^(id responseObject) {
             
             [YJStatusTool saveStatuses:responseObject[@"statuses"]];
             
-            NSArray *newest = [YJStatusModel mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-            NSMutableArray *newFrames = [self statusFramesWithStatuses:newest];
-            
-            NSRange range = NSMakeRange(0, newFrames.count);
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
-            [self.statusFrames insertObjects:newFrames atIndexes:indexSet];
-            
-            [self.tableView reloadData];
-            [self.tableView.mj_header endRefreshing];
-            [self showNewestStatusCount:newest.count];
+            dealingNewResult(responseObject[@"statuses"]);
             
         } failure:^(NSError *error) {
             NSLog(@"refresh status error : %@", error);
@@ -217,10 +195,9 @@
         paras[@"access_token"] = account.access_token;
         paras[@"max_id"] = lastStatus.idstr;
         
-        //先尝试从沙盒中读取数据
-        NSArray *more_sb = [YJStatusTool statusesWithParams:paras];
-        if (more_sb.count) {
-            NSArray *more = [YJStatusModel mj_objectArrayWithKeyValuesArray:more_sb];
+        //定义一个block处理更多数据
+        void (^dealingMoreResult)(NSArray *) = ^(NSArray *moreStatus){
+            NSArray *more = [YJStatusModel mj_objectArrayWithKeyValuesArray:moreStatus];
             NSMutableArray *newFrames = [self statusFramesWithStatuses:more];
             
             [self.statusFrames removeLastObject];
@@ -228,19 +205,18 @@
             
             [self.tableView reloadData];
             [self.tableView.mj_footer endRefreshing];
+        };
+        
+        //先尝试从沙盒中读取数据
+        NSArray *more_sb = [YJStatusTool statusesWithParams:paras];
+        if (more_sb.count) {
+            dealingMoreResult(more_sb);
         } else {
             [YJHttpTool GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:paras success:^(id responseObject) {
                 
                 [YJStatusTool saveStatuses:responseObject[@"statuses"]];
                 
-                NSArray *more = [YJStatusModel mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-                NSMutableArray *newFrames = [self statusFramesWithStatuses:more];
-                
-                [self.statusFrames removeLastObject];
-                [self.statusFrames addObjectsFromArray:newFrames];
-                
-                [self.tableView reloadData];
-                [self.tableView.mj_footer endRefreshing];
+                dealingMoreResult(responseObject[@"statuses"]);
                 
             } failure:^(NSError *error) {
                 NSLog(@"load more error : %@", error);
@@ -277,6 +253,18 @@
         [newFrames addObject:oneFrame];
     }
     return newFrames;
+}
+
+- (void)repostBtnClick:(NSNotification *)notification {
+    YJStatusModel *oneStatus = notification.object;
+    
+    YJRepostViewController *repost = [[YJRepostViewController alloc] initWithStatusModel:oneStatus];
+    YJBaseNaviController *vc = [[YJBaseNaviController alloc] initWithRootViewController:repost];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)commentBtnClick:(NSNotification *)notification {
+    NSLog(@"home通知--评论");
 }
 
 - (void)friendSearch {

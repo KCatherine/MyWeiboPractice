@@ -120,6 +120,7 @@
 		39AA49DA1C6F5A1900A7E354 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AA49D41C6F5A1900A7E354 /* FMResultSet.m */; };
 		39AA49DE1C6F5D6100A7E354 /* YJStatusTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AA49DD1C6F5D6100A7E354 /* YJStatusTool.m */; };
 		39AA49E01C6F5D7600A7E354 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AA49DF1C6F5D7600A7E354 /* libsqlite3.0.tbd */; };
+		39AA49E61C70247900A7E354 /* YJRepostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AA49E51C70247900A7E354 /* YJRepostViewController.m */; };
 		39DB514E1C5B1EE100AAC43C /* YJNewFeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DB514D1C5B1EE100AAC43C /* YJNewFeatureController.m */; };
 		39DB51531C5C5ADB00AAC43C /* YJOAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DB51521C5C5ADB00AAC43C /* YJOAuthController.m */; };
 		39DB51631C5C64C800AAC43C /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DB51571C5C64C800AAC43C /* AFHTTPSessionManager.m */; };
@@ -353,6 +354,8 @@
 		39AA49DC1C6F5D6100A7E354 /* YJStatusTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJStatusTool.h; sourceTree = "<group>"; };
 		39AA49DD1C6F5D6100A7E354 /* YJStatusTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJStatusTool.m; sourceTree = "<group>"; };
 		39AA49DF1C6F5D7600A7E354 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		39AA49E41C70247900A7E354 /* YJRepostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJRepostViewController.h; sourceTree = "<group>"; };
+		39AA49E51C70247900A7E354 /* YJRepostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJRepostViewController.m; sourceTree = "<group>"; };
 		39DB514C1C5B1EE100AAC43C /* YJNewFeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJNewFeatureController.h; sourceTree = "<group>"; };
 		39DB514D1C5B1EE100AAC43C /* YJNewFeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJNewFeatureController.m; sourceTree = "<group>"; };
 		39DB51511C5C5ADB00AAC43C /* YJOAuthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJOAuthController.h; sourceTree = "<group>"; };
@@ -438,6 +441,7 @@
 				3961E47B1C59F06900C503F1 /* Category */,
 				3961E4731C59F06900C503F1 /* Base */,
 				396329551C60EB5E00E316F0 /* Compose */,
+				39AA49E11C70242C00A7E354 /* Repost */,
 				3961E4841C59F06900C503F1 /* Home */,
 				3961E48A1C59F06900C503F1 /* Me */,
 				3961E4901C59F06900C503F1 /* Message */,
@@ -961,6 +965,31 @@
 			path = fmdb;
 			sourceTree = "<group>";
 		};
+		39AA49E11C70242C00A7E354 /* Repost */ = {
+			isa = PBXGroup;
+			children = (
+				39AA49E31C70242C00A7E354 /* View */,
+				39AA49E21C70242C00A7E354 /* Controller */,
+			);
+			path = Repost;
+			sourceTree = "<group>";
+		};
+		39AA49E21C70242C00A7E354 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				39AA49E41C70247900A7E354 /* YJRepostViewController.h */,
+				39AA49E51C70247900A7E354 /* YJRepostViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		39AA49E31C70242C00A7E354 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		39DB514A1C5B1EC600AAC43C /* NewFeature */ = {
 			isa = PBXGroup;
 			children = (
@@ -1180,6 +1209,7 @@
 				396328BD1C5CBA2C00E316F0 /* SDWebImageDownloader.m in Sources */,
 				396328BE1C5CBA2C00E316F0 /* SDWebImageDownloaderOperation.m in Sources */,
 				396328CA1C5CBC3C00E316F0 /* YJUserModel.m in Sources */,
+				39AA49E61C70247900A7E354 /* YJRepostViewController.m in Sources */,
 				396328EC1C5CC01000E316F0 /* NSObject+MJProperty.m in Sources */,
 				3970747A1C64EC2300E9BD86 /* YJHttpTool.m in Sources */,
 				396328BC1C5CBA2C00E316F0 /* SDWebImageDecoder.m in Sources */,

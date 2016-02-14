@@ -84,9 +84,9 @@
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_card_bottom_background"]]];
         
-        self.repostsBtn = [self setUpBtn:@"转发" icon:@"timeline_icon_retweet"];
-        self.commentsBtn = [self setUpBtn:@"评论" icon:@"timeline_icon_comment"];
-        self.attitudesBtn = [self setUpBtn:@"赞" icon:@"timeline_icon_unlike"];
+        self.repostsBtn = [self setUpBtn:@"转发" icon:@"timeline_icon_retweet" type:YJStatusToolBarButtonTypeRepost];
+        self.commentsBtn = [self setUpBtn:@"评论" icon:@"timeline_icon_comment" type:YJStatusToolBarButtonTypeComment];
+        self.attitudesBtn = [self setUpBtn:@"赞" icon:@"timeline_icon_unlike" type:YJStatusToolBarButtonTypeGood];
         
         [self setUpDivider];
         [self setUpDivider];
@@ -95,14 +95,16 @@
     return self;
 }
 
-- (UIButton *)setUpBtn:(NSString *)title icon:(NSString *)icon {
+- (UIButton *)setUpBtn:(NSString *)title icon:(NSString *)icon type:(YJStatusToolBarButtonType)type {
     UIButton *btn = [[UIButton alloc] init];
     [btn setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageNamed:@"timeline_card_bottom_background_highlighted"] forState:UIControlStateHighlighted];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
     btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    btn.tag = type;
     [self addSubview:btn];
     
     [self.btns addObject:btn];
@@ -139,6 +141,12 @@
         divider.height = btnH;
         divider.x = (i + 1) * btnW;
         divider.y = 0;
+    }
+}
+
+- (void)buttonClick:(UIButton *)btn {
+    if ([self.delegate respondsToSelector:@selector(statusToolBar:DidClickButton:)]) {
+        [self.delegate statusToolBar:self DidClickButton:btn.tag];
     }
 }
 

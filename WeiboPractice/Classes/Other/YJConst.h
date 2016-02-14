@@ -26,6 +26,15 @@ extern NSString * const YJEmotionDidSelectNotification;
 extern NSString * const YJTextWillDeleteNotification;
 
 /**
+ *  点击了转发按钮的通知
+ */
+extern NSString * const YJRepostButtonDidClickNotification;
+/**
+ *  点击了评论按钮的通知
+ */
+extern NSString * const YJCommentButtonDidClickNotification;
+
+/**
  *  OAuth时使用的AppKey, 备用为 @"195317136"
  */
 extern NSString * const YJAppKey;
